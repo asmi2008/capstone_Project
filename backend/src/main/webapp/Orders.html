@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders - AsmiMart</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ui/theme.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f7e9ff, #fff4f8);
+            min-height: 100vh;
+        }
+
+        .orders-page {
+            max-width: 850px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .orders-card {
+            background: white;
+            border-radius: 24px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(80, 30, 100, 0.15);
+        }
+
+        .orders-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .orders-card h1 {
+            color: #4a126b;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .orders-card p {
+            color: #666;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .orders-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #8e24aa, #d81b60);
+            box-shadow: 0 6px 15px rgba(142, 36, 170, 0.25);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #5a3d68;
+            background: #f0eaf5;
+        }
+
+        @media (max-width: 600px) {
+            .orders-page {
+                margin: 40px auto;
+                padding: 15px;
+            }
+
+            .orders-card {
+                padding: 30px 20px;
+            }
+
+            .orders-card h1 {
+                font-size: 27px;
+            }
+
+            .back-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="orders-page">
+
+        <div class="orders-card">
+
+            <div class="orders-icon">📦</div>
+
+            <h1>My Orders</h1>
+
+            <p>
+                View your placed orders, order amounts,
+                and current order status.
+            </p>
+
+            <a
+                class="orders-btn"
+                href="http://localhost:8080/fashionstore-backend/order-history">
+                View My Orders
+            </a>
+
+            <a
+                class="back-btn"
+                href="home.html">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

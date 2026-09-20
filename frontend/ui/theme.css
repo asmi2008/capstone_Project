@@ -1,0 +1,319 @@
+:root{
+--primary:#7c3aed;
+--secondary:#ec4899;
+--accent:#f97316;
+--dark:#18181b;
+--text:#27272a;
+--muted:#71717a;
+--light:#fafafa;
+--white:#ffffff;
+--border:#e4e4e7;
+--shadow:0 10px 30px rgba(0,0,0,.08);
+--radius:16px;
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--light);
+color:var(--text);
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+button,
+input,
+select,
+textarea{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+border:0;
+}
+
+.asmi-container{
+width:min(1200px,92%);
+margin:auto;
+}
+
+.asmi-header{
+background:var(--white);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.asmi-nav{
+min-height:72px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:25px;
+}
+
+.asmi-logo{
+font-size:28px;
+font-weight:800;
+color:var(--primary);
+}
+
+.asmi-logo span{
+color:var(--secondary);
+}
+
+.asmi-menu{
+display:flex;
+align-items:center;
+gap:25px;
+}
+
+.asmi-menu a{
+font-weight:600;
+color:var(--text);
+transition:.2s;
+}
+
+.asmi-menu a:hover{
+color:var(--primary);
+}
+
+.asmi-btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 22px;
+border-radius:10px;
+font-weight:700;
+transition:.2s;
+}
+
+.asmi-btn-primary{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:white;
+box-shadow:0 6px 18px rgba(124,58,237,.25);
+}
+
+.asmi-btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.asmi-btn-orange{
+background:var(--accent);
+color:white;
+}
+
+.asmi-hero{
+padding:80px 0;
+background:linear-gradient(135deg,#f5f3ff,#fdf2f8,#fff7ed);
+}
+
+.asmi-hero-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:50px;
+align-items:center;
+}
+
+.asmi-hero h1{
+font-size:56px;
+line-height:1.05;
+margin-bottom:20px;
+}
+
+.asmi-hero h1 span{
+color:var(--primary);
+}
+
+.asmi-hero p{
+font-size:18px;
+line-height:1.7;
+color:var(--muted);
+margin-bottom:28px;
+}
+
+.asmi-hero-card{
+min-height:350px;
+border-radius:28px;
+background:linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+box-shadow:var(--shadow);
+}
+
+.asmi-section{
+padding:65px 0;
+}
+
+.asmi-section-title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.asmi-section-title h2{
+font-size:36px;
+margin-bottom:10px;
+}
+
+.asmi-section-title p{
+color:var(--muted);
+}
+
+.asmi-products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:24px;
+}
+
+.asmi-product-card{
+background:white;
+border:1px solid var(--border);
+border-radius:var(--radius);
+overflow:hidden;
+box-shadow:var(--shadow);
+transition:.25s;
+}
+
+.asmi-product-card:hover{
+transform:translateY(-6px);
+}
+
+.asmi-product-image{
+height:220px;
+background:linear-gradient(135deg,#ede9fe,#fce7f3);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:55px;
+}
+
+.asmi-product-info{
+padding:20px;
+}
+
+.asmi-product-info h3{
+font-size:19px;
+margin-bottom:8px;
+}
+
+.asmi-product-info p{
+color:var(--muted);
+font-size:14px;
+margin-bottom:12px;
+}
+
+.asmi-price{
+font-size:21px;
+font-weight:800;
+color:var(--primary);
+margin-bottom:15px;
+}
+
+.asmi-form-box{
+width:min(500px,92%);
+margin:50px auto;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:var(--shadow);
+border:1px solid var(--border);
+}
+
+.asmi-form-box h1{
+text-align:center;
+margin-bottom:25px;
+}
+
+.asmi-form-group{
+margin-bottom:18px;
+}
+
+.asmi-form-group label{
+display:block;
+font-weight:700;
+margin-bottom:7px;
+}
+
+.asmi-form-group input,
+.asmi-form-group select,
+.asmi-form-group textarea{
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:10px;
+outline:none;
+}
+
+.asmi-form-group input:focus,
+.asmi-form-group select:focus,
+.asmi-form-group textarea:focus{
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(124,58,237,.1);
+}
+
+.asmi-footer{
+background:var(--dark);
+color:white;
+padding:35px 0;
+margin-top:50px;
+}
+
+.asmi-footer-content{
+display:flex;
+justify-content:space-between;
+gap:20px;
+}
+
+@media(max-width:900px){
+.asmi-hero-grid{
+grid-template-columns:1fr;
+}
+
+.asmi-products{
+grid-template-columns:repeat(2,1fr);
+}
+
+.asmi-menu{
+gap:12px;
+}
+}
+
+@media(max-width:600px){
+.asmi-nav{
+flex-direction:column;
+padding:18px 0;
+}
+
+.asmi-menu{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.asmi-hero{
+padding:55px 0;
+}
+
+.asmi-hero h1{
+font-size:40px;
+}
+
+.asmi-products{
+grid-template-columns:1fr;
+}
+
+.asmi-footer-content{
+flex-direction:column;
+}
+}

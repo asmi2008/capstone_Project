@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AsmiMart - Create Account</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6a1b9a,
+                    #8e24aa,
+                    #d81b60
+                );
+
+            padding: 30px 15px;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .brand {
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 36px;
+            letter-spacing: 1px;
+        }
+
+        .brand p {
+            margin-top: 8px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .register-card {
+            background: white;
+            border-radius: 25px;
+            padding: 38px 35px;
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.20);
+        }
+
+        .register-card h2 {
+            text-align: center;
+            color: #4a126b;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #3f3150;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px 14px;
+
+            border: 1px solid #ddd;
+            border-radius: 12px;
+
+            font-size: 15px;
+            outline: none;
+
+            background: #faf8fc;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #8e24aa;
+
+            box-shadow:
+                0 0 0 3px rgba(142, 36, 170, 0.10);
+        }
+
+        .role-info {
+            background: #faf2ff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-top: 7px;
+
+            color: #6a1b9a;
+            font-size: 12px;
+        }
+
+        .register-btn {
+            width: 100%;
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8e24aa,
+                    #d81b60
+                );
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+            box-shadow:
+                0 7px 18px rgba(142, 36, 170, 0.25);
+        }
+
+        .register-btn:hover {
+            opacity: 0.92;
+        }
+
+        .login-text {
+            text-align: center;
+            margin-top: 22px;
+
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-text a {
+            color: #8e24aa;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-text a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            margin-top: 18px;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px 12px;
+            }
+
+            .register-card {
+                padding: 30px 22px;
+            }
+
+            .brand h1 {
+                font-size: 30px;
+            }
+
+            .register-card h2 {
+                font-size: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="register-wrapper">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <h1>AsmiMart</h1>
+
+            <p>
+                Fashion that fits your style
+            </p>
+
+        </div>
+
+
+        <!-- REGISTER CARD -->
+
+        <div class="register-card">
+
+            <h2>Create Your Account</h2>
+
+            <p class="subtitle">
+                Join AsmiMart and start shopping today
+            </p>
+
+
+            <form id="registerForm"
+                  method="post"
+                  action="http://localhost:8080/fashionstore-backend/register">
+
+
+                <!-- FULL NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ROLE -->
+
+                <div class="form-group">
+
+                    <label for="role">
+                        Account Type
+                    </label>
+
+                    <select
+                        id="role"
+                        name="role"
+                        required
+                    >
+
+                        <option value="">
+                            Select your account type
+                        </option>
+
+                        <option value="Buyer">
+                            Buyer - Shop Products
+                        </option>
+
+                        <option value="Seller">
+                            Seller - Sell Products
+                        </option>
+
+                        <option value="Admin">
+                            Admin - Manage Store
+                        </option>
+
+                    </select>
+
+                    <div class="role-info">
+                        Choose the type of account you want to create.
+                    </div>
+
+                </div>
+
+
+                <!-- REGISTER -->
+
+                <button
+                    type="submit"
+                    class="register-btn">
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN -->
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="index.html">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-text">
+            © 2026 AsmiMart • Fashion E-Commerce
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

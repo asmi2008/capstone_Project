@@ -1,0 +1,152 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;color:#222;background:#f8f7fc;line-height:1.6}
+a{text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+
+.asmi-login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px;background:linear-gradient(135deg,#f4f1ff,#fff1f8)}
+.asmi-login-wrapper{width:100%;max-width:1100px;min-height:650px;display:flex;background:#fff;border-radius:30px;overflow:hidden;box-shadow:0 25px 70px rgba(65,35,100,.16)}
+.asmi-login-section{width:50%;padding:55px 65px;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.asmi-login-logo{font-size:34px;font-weight:800;color:#6d28d9;margin-bottom:18px}
+.asmi-login-logo span{color:#ec4899}
+.asmi-login-title{font-size:34px;color:#222;margin-bottom:5px}
+.asmi-login-subtitle{color:#999;font-size:14px;margin-bottom:25px}
+.asmi-google-button{width:100%;height:48px;border:1px solid #e5e5e5;border-radius:8px;background:#fff;color:#444;font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer}
+.asmi-google-button:hover{background:#fafafa;border-color:#cfc4ff}
+.google-letter{color:#4285f4;font-size:20px;font-weight:800}
+.asmi-divider{width:100%;display:flex;align-items:center;gap:12px;margin:24px 0}
+.asmi-divider span{flex:1;height:1px;background:#eee}
+.asmi-divider p{color:#aaa;font-size:12px}
+.asmi-login-form{width:100%}
+.asmi-login-form>label{display:block;color:#444;font-size:13px;font-weight:600;margin-top:15px;margin-bottom:7px}
+.asmi-login-form>input{width:100%;height:48px;padding:12px 15px;border:1px solid #e4dfeb;border-radius:8px;background:#fafafa;outline:none;font-size:14px}
+.asmi-login-form>input:focus{background:#fff;border-color:#8b5cf6;box-shadow:0 0 0 3px rgba(139,92,246,.1)}
+.asmi-login-options{display:flex;align-items:center;justify-content:space-between;margin-top:15px;font-size:12px}
+.remember-option{display:flex;align-items:center;gap:7px;color:#888;cursor:pointer}
+.remember-option input{width:15px;height:15px;accent-color:#6d28d9}
+.forgot-password{color:#6d28d9;font-weight:600}
+.forgot-password:hover{color:#ec4899}
+.asmi-login-button{width:100%;height:50px;margin-top:25px;border:0;border-radius:9px;background:linear-gradient(90deg,#635bff,#8b5cf6);color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(99,91,255,.25);transition:.3s}
+.asmi-login-button:hover{transform:translateY(-2px)}
+.asmi-register-text{text-align:center;color:#999;font-size:13px;margin-top:22px}
+.asmi-register-text a{color:#6d28d9;font-weight:700}
+.asmi-register-text a:hover{color:#ec4899}
+
+.asmi-login-art{width:50%;position:relative;overflow:hidden;background:linear-gradient(145deg,#fff,#faf8ff);display:flex;align-items:center;justify-content:center}
+.art-shape{position:absolute;opacity:.9}
+.shape-purple-top{width:190px;height:190px;top:-75px;left:-65px;border-radius:0 0 100% 0;background:#b9aaf4}
+.shape-pink-top{width:100px;height:100px;top:40px;right:80px;border-radius:50%;background:#e5a5ec}
+.shape-orange-top{width:150px;height:150px;top:-60px;right:-30px;border-radius:50%;background:#ff9a76}
+.shape-purple-right{width:120px;height:150px;top:130px;right:-45px;border-radius:70% 0 0 70%;background:#c5b1ec}
+.shape-pink-bottom{width:120px;height:215px;bottom:-45px;left:75px;border-radius:60% 40% 40% 60%;background:linear-gradient(150deg,#ff8bae,#ee3b68);transform:rotate(-15deg)}
+.shape-blue-bottom{width:170px;height:105px;bottom:5px;left:210px;border-radius:60% 40% 60% 40%;background:#76cedd;transform:rotate(-35deg)}
+.art-dots{position:absolute;width:110px;height:80px;right:100px;top:220px;background-image:radial-gradient(#d8d8d8 1.5px,transparent 1.5px);background-size:10px 10px}
+.asmi-art-content{position:relative;z-index:5;max-width:430px;padding:20px;text-align:center}
+.art-small-title{color:#8b5cf6;font-size:13px;font-weight:800;letter-spacing:4px;margin-bottom:18px}
+.asmi-art-content h2{color:#19151f;font-size:42px;line-height:1.15;font-weight:700;margin-bottom:20px}
+.asmi-art-content h2 span{color:#ec4899}
+.art-description{color:#888;font-size:15px;line-height:1.7}
+.mini-fashion-card{position:absolute;z-index:6;right:45px;bottom:55px;width:125px;height:155px;border-radius:20px;background:linear-gradient(145deg,#6d28d9,#ec4899);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(8deg);box-shadow:0 15px 30px rgba(70,40,120,.22)}
+.mini-fashion-card span{font-size:10px;letter-spacing:3px}
+.mini-fashion-card strong{font-size:24px}
+.mini-fashion-card small{font-size:9px;letter-spacing:2px}
+
+.main-header{width:100%;min-height:75px;padding:0 7%;background:#fff;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 3px 20px rgba(0,0,0,.08)}
+.main-header .logo{font-size:29px;font-weight:800;color:#6d28d9}
+.main-header .logo span{color:#ec4899}
+.main-nav{display:flex;align-items:center;gap:28px}
+.main-nav a{color:#444;font-size:15px;font-weight:600}
+.main-nav a:hover,.main-nav a.active{color:#7c3aed}
+
+.hero-section{min-height:570px;padding:70px 8%;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#f3e8ff,#fce7f3);overflow:hidden}
+.hero-content{width:52%;max-width:650px}
+.hero-small-title{color:#9333ea;font-size:13px;font-weight:800;letter-spacing:3px;margin-bottom:18px}
+.hero-content h1{color:#241438;font-size:58px;line-height:1.08;margin-bottom:22px}
+.hero-content h1 span{display:block;color:#8b5cf6}
+.hero-description{max-width:550px;color:#666;font-size:18px;line-height:1.7;margin-bottom:30px}
+.hero-button{display:inline-block;padding:14px 32px;border-radius:30px;background:linear-gradient(135deg,#6d28d9,#ec4899);color:#fff;font-weight:700;box-shadow:0 8px 20px rgba(109,40,217,.25)}
+.hero-button:hover{transform:translateY(-3px)}
+
+.hero-fashion{width:42%;min-height:400px;position:relative;display:flex;align-items:center;justify-content:center}
+.fashion-circle{position:absolute;border-radius:50%}
+.circle-one{width:350px;height:350px;right:30px;background:#ddd6fe}
+.circle-two{width:230px;height:230px;left:30px;bottom:20px;background:#fbcfe8}
+.fashion-card{position:relative;z-index:2;width:260px;height:330px;border-radius:25px;background:linear-gradient(160deg,#6d28d9,#ec4899);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;box-shadow:0 25px 50px rgba(70,40,120,.25);transform:rotate(5deg)}
+.fashion-card span{font-size:25px;letter-spacing:6px}
+.fashion-card strong{font-size:42px}
+.fashion-card small{margin-top:18px;letter-spacing:3px}
+
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading p{color:#9333ea;font-size:12px;font-weight:800;letter-spacing:3px;margin-bottom:8px}
+.section-heading h2{color:#27163b;font-size:36px;margin-bottom:8px}
+.section-heading span{color:#777;font-size:15px}
+
+.category-section{padding:80px 7%;background:#fff}
+.category-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.category-card{min-height:260px;padding:30px;border-radius:22px;background:#faf9ff;border:1px solid #eee8ff;transition:.3s}
+.category-card:hover{transform:translateY(-7px);box-shadow:0 15px 35px rgba(50,30,90,.12)}
+.category-icon{width:55px;height:55px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6d28d9,#ec4899);color:#fff;font-size:22px;font-weight:800;margin-bottom:25px}
+.category-card h3{color:#30203f;font-size:21px;margin-bottom:8px}
+.category-card p{color:#777;margin-bottom:18px}
+.category-card a{color:#7c3aed;font-weight:700}
+
+.featured-section{padding:80px 7%;background:#f8f7fc}
+.featured-grid{max-width:1150px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+.featured-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 8px 25px rgba(50,30,90,.07);transition:.3s}
+.featured-card:hover{transform:translateY(-6px)}
+.product-placeholder{height:230px;display:flex;align-items:center;justify-content:center;font-size:90px;background:linear-gradient(135deg,#ede9fe,#fce7f3)}
+.product-info{padding:25px}
+.product-info span{color:#9333ea;font-size:11px;font-weight:800;letter-spacing:2px}
+.product-info h3{color:#2d1b3d;font-size:21px;margin:8px 0}
+.product-info p{color:#777;margin-bottom:15px}
+.product-info a{color:#7c3aed;font-weight:700}
+
+.offer-section{margin:30px 7%;padding:65px;border-radius:25px;background:linear-gradient(135deg,#5b21b6,#db2777);color:#fff;text-align:center}
+.offer-content p{font-size:12px;font-weight:800;letter-spacing:3px;margin-bottom:12px}
+.offer-content h2{color:#fff;font-size:38px;margin-bottom:12px}
+.offer-content span{display:block;color:rgba(255,255,255,.9);margin-bottom:25px}
+.offer-button{display:inline-block;padding:12px 27px;border-radius:25px;background:#fff;color:#6d28d9;font-weight:700}
+
+.quick-section{padding:70px 7%;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;background:#fff}
+.quick-card{padding:25px;border-radius:16px;background:#faf9ff;border:1px solid #eee8ff}
+.quick-card h3{color:#6d28d9;font-size:17px;margin-bottom:8px}
+.quick-card p{color:#777;font-size:14px}
+.quick-card a{display:inline-block;margin-top:10px;color:#ec4899;font-weight:700;font-size:13px}
+
+.main-footer{background:#21152f;color:#fff;padding:50px 7% 25px}
+.footer-brand h2{color:#fff;font-size:28px;margin-bottom:8px}
+.footer-brand h2 span{color:#ec4899}
+.footer-brand p{color:#cfc6d8}
+.footer-links{display:flex;gap:25px;margin:30px 0}
+.footer-links a{color:#ddd;font-size:14px}
+.footer-bottom{border-top:1px solid #40334b;padding-top:20px;color:#aaa;font-size:13px}
+
+@media(max-width:900px){
+.asmi-login-wrapper{max-width:760px}
+.asmi-login-section{padding:45px}
+.hero-section{padding:55px 6%}
+.hero-content h1{font-size:44px}
+.category-grid,.featured-grid{grid-template-columns:1fr 1fr}
+.quick-section{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:650px){
+.asmi-login-page{padding:15px}
+.asmi-login-wrapper{flex-direction:column;min-height:auto}
+.asmi-login-section,.asmi-login-art{width:100%}
+.asmi-login-section{padding:35px 25px}
+.asmi-login-art{min-height:430px}
+.asmi-art-content h2{font-size:32px}
+.main-header{padding:18px;flex-direction:column;gap:15px}
+.main-nav{flex-wrap:wrap;justify-content:center;gap:12px}
+.hero-section{min-height:auto;flex-direction:column;text-align:center;padding:55px 20px}
+.hero-content{width:100%}
+.hero-content h1{font-size:38px}
+.hero-description{font-size:16px}
+.hero-fashion{width:100%;margin-top:40px}
+.category-grid,.featured-grid,.quick-section{grid-template-columns:1fr}
+.category-section,.featured-section{padding:60px 20px}
+.offer-section{margin:20px;padding:45px 20px}
+.offer-content h2{font-size:30px}
+.footer-links{flex-wrap:wrap}
+}
