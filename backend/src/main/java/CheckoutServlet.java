@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -84,7 +83,6 @@ public class CheckoutServlet extends HttpServlet {
             "gap: 22px;" +
             "}"
         );
-
         response.getWriter().println(
             ".nav-links a {" +
             "color: white;" +
@@ -92,7 +90,6 @@ public class CheckoutServlet extends HttpServlet {
             "font-weight: bold;" +
             "}"
         );
-
         response.getWriter().println(
             ".container {" +
             "max-width: 650px;" +
@@ -100,7 +97,6 @@ public class CheckoutServlet extends HttpServlet {
             "padding: 20px;" +
             "}"
         );
-
         response.getWriter().println(
             ".checkout-card {" +
             "background: white;" +
@@ -110,7 +106,6 @@ public class CheckoutServlet extends HttpServlet {
             "box-shadow: 0 12px 35px rgba(80,30,100,0.15);" +
             "}"
         );
-
         response.getWriter().println(
             ".icon {" +
             "width: 85px;" +
@@ -125,7 +120,6 @@ public class CheckoutServlet extends HttpServlet {
             "justify-content: center;" +
             "}"
         );
-
         response.getWriter().println(
             "h1 {" +
             "font-size: 32px;" +
@@ -133,7 +127,6 @@ public class CheckoutServlet extends HttpServlet {
             "color: #4a126b;" +
             "}"
         );
-
         response.getWriter().println(
             ".message {" +
             "font-size: 17px;" +
@@ -142,7 +135,29 @@ public class CheckoutServlet extends HttpServlet {
             "margin-bottom: 30px;" +
             "}"
         );
-
+       response.getWriter().println(
+    ".address-box {" +
+    "text-align: left;" +
+    "margin-bottom: 30px;" +
+    "}" +
+    ".address-box h3 {" +
+    "color: #4a126b;" +
+    "margin-bottom: 15px;" +
+    "}" +
+    ".address-box input, " +
+    ".address-box textarea {" +
+    "width: 100%;" +
+    "padding: 12px;" +
+    "margin-bottom: 12px;" +
+    "border: 1px solid #ddd;" +
+    "border-radius: 10px;" +
+    "font-size: 15px;" +
+    "}" +
+    ".address-box textarea {" +
+    "height: 80px;" +
+    "resize: vertical;" +
+    "}"
+);
         response.getWriter().println(
             ".secure {" +
             "background: #fff4fa;" +
@@ -153,7 +168,6 @@ public class CheckoutServlet extends HttpServlet {
             "font-size: 14px;" +
             "}"
         );
-
         response.getWriter().println(
             ".buttons {" +
             "display: flex;" +
@@ -162,7 +176,6 @@ public class CheckoutServlet extends HttpServlet {
             "flex-wrap: wrap;" +
             "}"
         );
-
         response.getWriter().println(
             ".btn {" +
             "display: inline-block;" +
@@ -175,7 +188,6 @@ public class CheckoutServlet extends HttpServlet {
             "text-decoration: none;" +
             "}"
         );
-
         response.getWriter().println(
             ".confirm {" +
             "background: linear-gradient(135deg, #8e24aa, #d81b60);" +
@@ -183,14 +195,12 @@ public class CheckoutServlet extends HttpServlet {
             "box-shadow: 0 6px 15px rgba(142,36,170,0.25);" +
             "}"
         );
-
         response.getWriter().println(
             ".back {" +
             "background: #f0eaf5;" +
             "color: #5a3d68;" +
             "}"
         );
-
         response.getWriter().println(
             ".footer {" +
             "text-align: center;" +
@@ -249,7 +259,20 @@ public class CheckoutServlet extends HttpServlet {
             "Please confirm your order to continue." +
             "</p>"
         );
+          response.getWriter().println(
+    "<form method='post' action='checkout'>"
+);
 
+response.getWriter().println(
+    "<div class='address-box'>" +
+    "<h3>Delivery Details</h3>" +
+    "<input type='text' name='fullName' placeholder='Full Name' required>" +
+    "<input type='tel' name='phone' placeholder='Phone Number' required>" +
+    "<textarea name='address' placeholder='Address' required></textarea>" +
+    "<input type='text' name='city' placeholder='City' required>" +
+    "<input type='text' name='pincode' placeholder='Pincode' required>" +
+    "</div>"
+);
         response.getWriter().println(
             "<div class='secure'>" +
             "🔒 Your order will be securely saved in your account." +
@@ -261,28 +284,19 @@ public class CheckoutServlet extends HttpServlet {
         );
 
         response.getWriter().println(
-            "<form method='post' action='checkout' " +
-            "style='display:inline;'>"
-        );
-
-        response.getWriter().println(
-            "<button type='submit' class='btn confirm'>" +
-            "✓ Confirm Order" +
-            "</button>"
-        );
-
-        response.getWriter().println("</form>");
-
+    "<button type='submit' class='btn confirm'>" +
+    "✓ Confirm Order" +
+    "</button>"
+);
+          response.getWriter().println("</form>");
+           
         response.getWriter().println(
             "<a class='btn back' href='cart'>" +
             "← Back to Cart" +
             "</a>"
         );
-
         response.getWriter().println("</div>");
-
         response.getWriter().println("</div>");
-
         response.getWriter().println(
             "<div class='footer'>" +
             "Thank you for shopping with AsmiMart ❤️" +
@@ -451,10 +465,9 @@ public class CheckoutServlet extends HttpServlet {
             "Thank you for shopping with AsmiMart!" +
             "</p>"
         );
-
         response.getWriter().println(
             "<a class='btn shop' " +
-            "href='http://127.0.0.1:5500/frontend/products.html'>" +
+            "href='http://localhost:8080/fashionstore-frontened/products.html'>" +
             "Continue Shopping" +
             "</a>"
         );
