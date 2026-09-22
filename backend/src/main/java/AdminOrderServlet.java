@@ -13,14 +13,10 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/admin-orders")
 public class AdminOrderServlet extends HttpServlet {
-
     protected void doGet(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
-
-        // Get current session
         HttpSession session = request.getSession(false);
 
         // Check Admin Login
@@ -526,3 +522,9 @@ public class AdminOrderServlet extends HttpServlet {
         }
     }
 }
+
+
+
+
+
+
