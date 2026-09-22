@@ -4,288 +4,1151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AsmiMart - Products</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="ui/theme.css">
 
 <style>
-.shop-page{padding:40px 6%;background:#f7f7fb;min-height:100vh}
-.shop-title{text-align:center;margin-bottom:30px}
-.shop-title h1{font-size:42px;margin:0 0 10px;color:#202044}
-.shop-title p{color:#777}
-.filters{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:30px}
-.filters input,.filters select{padding:13px 16px;border:1px solid #ddd;border-radius:10px;font-size:15px}
-.filters button{padding:13px 22px;border:0;border-radius:10px;background:#1769e8;color:white;font-weight:bold;cursor:pointer}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:25px}
-.product-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(30,30,80,.1);transition:.25s}
-.product-card:hover{transform:translateY(-5px)}
-.product-img{height:260px;background:#f0f1f6;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.product-img img{width:100%;height:100%;object-fit:cover}
-.product-info{padding:20px}
-.badge{display:inline-block;padding:5px 11px;border-radius:20px;background:#eee8ff;color:#7048d8;font-size:12px;font-weight:bold}
-.product-info h3{margin:12px 0 7px;color:#202044;font-size:20px}
-.product-info p{color:#777;font-size:14px;min-height:40px}
-.price{font-size:23px;font-weight:bold;color:#d93687;margin:12px 0}
-.stock{color:#4d8b57;font-size:14px;margin-bottom:12px}
-.cart-btn{width:100%;padding:12px;border:0;border-radius:10px;background:#ff7a00;color:white;font-weight:bold;cursor:pointer}
-.cart-btn:hover{background:#e96800}
+.shop-page{
+    padding:40px 6%;
+    background:#f7f7fb;
+    min-height:100vh
+}
+
+.shop-title{
+    text-align:center;
+    margin-bottom:30px
+}
+
+.shop-title h1{
+    font-size:42px;
+    margin:0 0 10px;
+    color:#202044
+}
+
+.shop-title p{
+    color:#777
+}
+
+.filters{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:30px
+}
+
+.filters input,
+.filters select{
+    padding:13px 16px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px
+}
+
+.filters button{
+    padding:13px 22px;
+    border:0;
+    border-radius:10px;
+    background:#1769e8;
+    color:white;
+    font-weight:bold;
+    cursor:pointer
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px
+}
+
+.product-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(30,30,80,.1);
+    transition:.25s
+}
+
+.product-card:hover{
+    transform:translateY(-5px)
+}
+
+.product-img{
+    height:260px;
+    background:#f0f1f6;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden
+}
+
+.product-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover
+}
+
+.product-info{
+    padding:20px
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 11px;
+    border-radius:20px;
+    background:#eee8ff;
+    color:#7048d8;
+    font-size:12px;
+    font-weight:bold
+}
+
+.product-info h3{
+    margin:12px 0 7px;
+    color:#202044;
+    font-size:20px
+}
+
+.product-info p{
+    color:#777;
+    font-size:14px;
+    min-height:40px
+}
+
+.price{
+    font-size:23px;
+    font-weight:bold;
+    color:#d93687;
+    margin:12px 0
+}
+
+.stock{
+    color:#4d8b57;
+    font-size:14px;
+    margin-bottom:12px
+}
+
+.cart-btn{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    background:#ff7a00;
+    color:white;
+    font-weight:bold;
+    cursor:pointer
+}
+
+.cart-btn:hover{
+    background:#e96800
+}
+
+/* Review Form */
+.review-form{
+    margin-top:15px;
+    padding-top:15px;
+    border-top:1px solid #eee
+}
+
+.review-form label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+    color:#202044
+}
+
+.review-form select,
+.review-form textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:14px
+}
+
+.review-form textarea{
+    min-height:80px;
+    resize:vertical
+}
+
+.review-btn{
+    width:100%;
+    padding:11px;
+    border:0;
+    border-radius:9px;
+    background:#1769e8;
+    color:white;
+    font-weight:bold;
+    cursor:pointer
+}
+
+.review-btn:hover{
+    background:#0f55c7
+}
 </style>
 </head>
 
 <body>
 
 <header class="main-header">
-<div class="logo">Asmi<span>Mart</span></div>
+
+<div class="logo">
+    Asmi<span>Mart</span>
+</div>
 
 <nav class="main-nav">
-<a href="home.html">Home</a>
-<a href="products.html" class="active">Products</a>
-<a href="cart.html">Cart</a>
-<a href="orders.html">Orders</a>
-<a href="index.html">Login</a>
+    <a href="home.html">Home</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="cart.html">Cart</a>
+    <a href="orders.html">Orders</a>
+    <a href="index.html">Login</a>
 </nav>
+
 </header>
+
 
 <main class="shop-page">
 
 <div class="shop-title">
-<h1>Discover Your Style</h1>
-<p>Explore our latest fashion collection</p>
+
+    <h1>Discover Your Style</h1>
+
+    <p>
+        Explore our latest fashion collection
+    </p>
+
 </div>
+
 
 <div class="filters">
-<input type="text" id="searchBox" placeholder="Search products..." onkeyup="filterProducts()">
 
-<select id="categoryBox" onchange="filterProducts()">
-<option value="">All Categories</option>
-<option value="Men">Men</option>
-<option value="Women">Women</option>
-<option value="Kids">Kids</option>
-<option value="Shoes">Shoes</option>
-<option value="Accessories">Accessories</option>
-</select>
+    <input
+        type="text"
+        id="searchBox"
+        placeholder="Search products..."
+        onkeyup="filterProducts()"
+    >
 
-<button onclick="filterProducts()">Search</button>
+    <select
+        id="categoryBox"
+        onchange="filterProducts()"
+    >
+
+        <option value="">All Categories</option>
+        <option value="Men">Men</option>
+        <option value="Women">Women</option>
+        <option value="Kids">Kids</option>
+        <option value="Shoes">Shoes</option>
+        <option value="Accessories">Accessories</option>
+
+    </select>
+
+    <button onclick="filterProducts()">
+        Search
+    </button>
+
 </div>
+
 
 <div class="product-grid">
 
-<div class="product-card" data-name="T-Shirt" data-category="Men">
-<div class="product-img">
-<img src="images/tshirt.png" alt="T-Shirt">
-</div>
-<div class="product-info">
-<span class="badge">Men</span>
-<h3>T-Shirt</h3>
-<p>Comfortable cotton T-Shirt</p>
-<div class="price">₹499.00</div>
-<div class="stock">✓ 10 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="2">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- T-SHIRT -->
+
+<div
+    class="product-card"
+    data-name="T-Shirt"
+    data-category="Men"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/tshirt.png"
+            alt="T-Shirt"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <span class="badge">
+            Men
+        </span>
+
+        <h3>
+            T-Shirt
+        </h3>
+
+        <p>
+            Comfortable cotton T-Shirt
+        </p>
+
+        <div class="price">
+            ₹499.00
+        </div>
+
+        <div class="stock">
+            ✓ 10 items available
+        </div>
+
+
+        <!-- Add To Cart -->
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="2"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+
+        <!-- Product Review -->
+
+        <form
+            class="review-form"
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/review"
+        >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="2"
+            >
+
+            <label>
+                Rating
+            </label>
+
+            <select
+                name="rating"
+                required
+            >
+
+                <option value="">
+                    Select Rating
+                </option>
+
+                <option value="5">
+                    ⭐⭐⭐⭐⭐
+                </option>
+
+                <option value="4">
+                    ⭐⭐⭐⭐
+                </option>
+
+                <option value="3">
+                    ⭐⭐⭐
+                </option>
+
+                <option value="2">
+                    ⭐⭐
+                </option>
+
+                <option value="1">
+                    ⭐
+                </option>
+
+            </select>
+
+
+            <textarea
+                name="comment"
+                placeholder="Write your review..."
+                required
+            ></textarea>
+
+
+            <button
+                class="review-btn"
+                type="submit"
+            >
+                Submit Review
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Classic Shirt" data-category="Men">
-<div class="product-img">
-<img src="images/shirt.png" alt="Classic Shirt">
-</div>
-<div class="product-info">
-<span class="badge">Men</span>
-<h3>Classic Shirt</h3>
-<p>Premium cotton casual shirt</p>
-<div class="price">₹799.00</div>
-<div class="stock">✓ 15 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="5">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- CLASSIC SHIRT -->
+
+<div
+    class="product-card"
+    data-name="Classic Shirt"
+    data-category="Men"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/shirt.png"
+            alt="Classic Shirt"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Men
+        </span>
+
+        <h3>
+            Classic Shirt
+        </h3>
+
+        <p>
+            Premium cotton casual shirt
+        </p>
+
+        <div class="price">
+            ₹799.00
+        </div>
+
+        <div class="stock">
+            ✓ 15 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="5"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Denim Jeans" data-category="Men">
-<div class="product-img">
-<img src="images/jeans.png" alt="Denim Jeans">
-</div>
-<div class="product-info">
-<span class="badge">Men</span>
-<h3>Denim Jeans</h3>
-<p>Comfort fit blue denim jeans</p>
-<div class="price">₹1299.00</div>
-<div class="stock">✓ 12 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="6">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- DENIM JEANS -->
+
+<div
+    class="product-card"
+    data-name="Denim Jeans"
+    data-category="Men"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/jeans.png"
+            alt="Denim Jeans"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Men
+        </span>
+
+        <h3>
+            Denim Jeans
+        </h3>
+
+        <p>
+            Comfort fit blue denim jeans
+        </p>
+
+        <div class="price">
+            ₹1299.00
+        </div>
+
+        <div class="stock">
+            ✓ 12 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="6"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Women Dress" data-category="Women">
-<div class="product-img">
-<img src="images/womendress.png" alt="Women Dress">
-</div>
-<div class="product-info">
-<span class="badge">Women</span>
-<h3>Women Dress</h3>
-<p>Elegant floral summer dress</p>
-<div class="price">₹999.00</div>
-<div class="stock">✓ 10 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="7">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- WOMEN DRESS -->
+
+<div
+    class="product-card"
+    data-name="Women Dress"
+    data-category="Women"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/womendress.png"
+            alt="Women Dress"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Women
+        </span>
+
+        <h3>
+            Women Dress
+        </h3>
+
+        <p>
+            Elegant floral summer dress
+        </p>
+
+        <div class="price">
+            ₹999.00
+        </div>
+
+        <div class="stock">
+            ✓ 10 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="7"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Women Top" data-category="Women">
-<div class="product-img">
-<img src="images/womentop.png" alt="Women Top">
-</div>
-<div class="product-info">
-<span class="badge">Women</span>
-<h3>Women Top</h3>
-<p>Stylish casual women top</p>
-<div class="price">₹699.00</div>
-<div class="stock">✓ 14 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="8">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- WOMEN TOP -->
+
+<div
+    class="product-card"
+    data-name="Women Top"
+    data-category="Women"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/womentop.png"
+            alt="Women Top"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Women
+        </span>
+
+        <h3>
+            Women Top
+        </h3>
+
+        <p>
+            Stylish casual women top
+        </p>
+
+        <div class="price">
+            ₹699.00
+        </div>
+
+        <div class="stock">
+            ✓ 14 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="8"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Kids T-Shirt" data-category="Kids">
-<div class="product-img">
-<img src="images/kidstshirt.png" alt="Kids T-Shirt">
-</div>
-<div class="product-info">
-<span class="badge">Kids</span>
-<h3>Kids T-Shirt</h3>
-<p>Soft cotton kids T-Shirt</p>
-<div class="price">₹399.00</div>
-<div class="stock">✓ 20 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="9">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- KIDS T-SHIRT -->
+
+<div
+    class="product-card"
+    data-name="Kids T-Shirt"
+    data-category="Kids"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/kidstshirt.png"
+            alt="Kids T-Shirt"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Kids
+        </span>
+
+        <h3>
+            Kids T-Shirt
+        </h3>
+
+        <p>
+            Soft cotton kids T-Shirt
+        </p>
+
+        <div class="price">
+            ₹399.00
+        </div>
+
+        <div class="stock">
+            ✓ 20 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="9"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Kids Dress" data-category="Kids">
-<div class="product-img">
-<img src="images/kidsdress.png" alt="Kids Dress">
-</div>
-<div class="product-info">
-<span class="badge">Kids</span>
-<h3>Kids Dress</h3>
-<p>Cute comfortable kids dress</p>
-<div class="price">₹599.00</div>
-<div class="stock">✓ 12 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="10">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- KIDS DRESS -->
+
+<div
+    class="product-card"
+    data-name="Kids Dress"
+    data-category="Kids"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/kidsdress.png"
+            alt="Kids Dress"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Kids
+        </span>
+
+        <h3>
+            Kids Dress
+        </h3>
+
+        <p>
+            Cute comfortable kids dress
+        </p>
+
+        <div class="price">
+            ₹599.00
+        </div>
+
+        <div class="stock">
+            ✓ 12 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="10"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Running Shoes" data-category="Shoes">
-<div class="product-img">
-<img src="images/shoes.png" alt="Running Shoes">
-</div>
-<div class="product-info">
-<span class="badge">Shoes</span>
-<h3>Running Shoes</h3>
-<p>Lightweight sports running shoes</p>
-<div class="price">₹1499.00</div>
-<div class="stock">✓ 8 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="11">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- RUNNING SHOES -->
+
+<div
+    class="product-card"
+    data-name="Running Shoes"
+    data-category="Shoes"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/shoes.png"
+            alt="Running Shoes"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Shoes
+        </span>
+
+        <h3>
+            Running Shoes
+        </h3>
+
+        <p>
+            Lightweight sports running shoes
+        </p>
+
+        <div class="price">
+            ₹1499.00
+        </div>
+
+        <div class="stock">
+            ✓ 8 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="11"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Fashion Handbag" data-category="Accessories">
-<div class="product-img">
-<img src="images/handbag.png" alt="Fashion Handbag">
-</div>
-<div class="product-info">
-<span class="badge">Accessories</span>
-<h3>Fashion Handbag</h3>
-<p>Trendy everyday handbag</p>
-<div class="price">₹1199.00</div>
-<div class="stock">✓ 7 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="12">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
+
+<!-- FASHION HANDBAG -->
+
+<div
+    class="product-card"
+    data-name="Fashion Handbag"
+    data-category="Accessories"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/handbag.png"
+            alt="Fashion Handbag"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Accessories
+        </span>
+
+        <h3>
+            Fashion Handbag
+        </h3>
+
+        <p>
+            Trendy everyday handbag
+        </p>
+
+        <div class="price">
+            ₹1199.00
+        </div>
+
+        <div class="stock">
+            ✓ 7 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="12"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="product-card" data-name="Leather Belt" data-category="Accessories">
-<div class="product-img">
-<img src="images/belt.png" alt="Leather Belt">
+
+<!-- LEATHER BELT -->
+
+<div
+    class="product-card"
+    data-name="Leather Belt"
+    data-category="Accessories"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/belt.png"
+            alt="Leather Belt"
+        >
+
+    </div>
+
+    <div class="product-info">
+
+        <span class="badge">
+            Accessories
+        </span>
+
+        <h3>
+            Leather Belt
+        </h3>
+
+        <p>
+            Classic premium fashion belt
+        </p>
+
+        <div class="price">
+            ₹499.00
+        </div>
+
+        <div class="stock">
+            ✓ 10 items available
+        </div>
+
+        <form
+            method="post"
+            action="http://localhost:8080/fashionstore-backend/cart"
+        >
+
+            <input
+                type="hidden"
+                name="action"
+                value="add"
+            >
+
+            <input
+                type="hidden"
+                name="productId"
+                value="13"
+            >
+
+            <input
+                type="hidden"
+                name="quantity"
+                value="1"
+            >
+
+            <button
+                class="cart-btn"
+                type="submit"
+            >
+                🛒 Add to Cart
+            </button>
+
+        </form>
+
+    </div>
+
 </div>
-<div class="product-info">
-<span class="badge">Accessories</span>
-<h3>Leather Belt</h3>
-<p>Classic premium fashion belt</p>
-<div class="price">₹499.00</div>
-<div class="stock">✓ 10 items available</div>
-<form method="post" action="http://localhost:8080/fashionstore-backend/cart">
-<input type="hidden" name="action" value="add">
-<input type="hidden" name="productId" value="13">
-<input type="hidden" name="quantity" value="1">
-<button class="cart-btn" type="submit">🛒 Add to Cart</button>
-</form>
-</div>
-</div>
+
 
 </div>
 </main>
+
+
 <script>
+
 function filterProducts(){
-    let s=document.getElementById("searchBox").value.toLowerCase();
-    let c=document.getElementById("categoryBox").value;
 
-    document.querySelectorAll(".product-card").forEach(card=>{
-        let name=card.dataset.name.toLowerCase();
-        let cat=card.dataset.category;
+    let s =
+        document
+        .getElementById("searchBox")
+        .value
+        .toLowerCase();
 
-        card.style.display=
-            name.includes(s) && (!c || cat===c)
-            ? "block" : "none";
+    let c =
+        document
+        .getElementById("categoryBox")
+        .value;
+
+
+    document
+    .querySelectorAll(".product-card")
+    .forEach(card => {
+
+        let name =
+            card.dataset.name.toLowerCase();
+
+        let cat =
+            card.dataset.category;
+
+
+        card.style.display =
+            name.includes(s) &&
+            (!c || cat === c)
+            ? "block"
+            : "none";
+
     });
+
 }
 
-window.onload=function(){
-    let c=new URLSearchParams(location.search).get("category");
+
+window.onload = function(){
+
+    let c =
+        new URLSearchParams(
+            location.search
+        ).get("category");
+
 
     if(c){
-        document.getElementById("categoryBox").value=c;
-        filterProducts();
-    }
-};
-</script>
 
+        document
+        .getElementById("categoryBox")
+        .value = c;
+
+        filterProducts();
+
+    }
+
+};
+
+</script>
 
 </body>
 </html>
