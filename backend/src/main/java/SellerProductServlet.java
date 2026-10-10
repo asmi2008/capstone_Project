@@ -1,14 +1,18 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 @WebServlet("/seller-product")
+@MultipartConfig
 public class SellerProductServlet extends HttpServlet {
 
     // =========================
@@ -42,10 +46,6 @@ public class SellerProductServlet extends HttpServlet {
         response.getWriter().println("<html>");
         response.getWriter().println("<head>");
         response.getWriter().println("<title>Manage Products</title>");
-
-        // =========================
-        // DESIGN / COLOUR ONLY
-        // =========================
 
         response.getWriter().println(
             "<style>" +
@@ -124,6 +124,13 @@ public class SellerProductServlet extends HttpServlet {
             "background-color: #f0e5f7;" +
             "}" +
 
+            ".product-image {" +
+            "width: 90px;" +
+            "height: 90px;" +
+            "object-fit: cover;" +
+            "border-radius: 8px;" +
+            "}" +
+
             "a {" +
             "color: #7b1fa2;" +
             "font-weight: bold;" +
@@ -151,7 +158,8 @@ public class SellerProductServlet extends HttpServlet {
         response.getWriter().println("<h2>Add New Product</h2>");
 
         response.getWriter().println(
-            "<form method='post' action='seller-product'>"
+            "<form method='post' action='seller-product' " +
+            "enctype='multipart/form-data'>"
         );
 
         response.getWriter().println(
@@ -182,9 +190,16 @@ public class SellerProductServlet extends HttpServlet {
             "</select><br>"
         );
 
+        // STOCK
         response.getWriter().println(
             "<input type='number' name='stock' " +
             "placeholder='Stock' min='0' required><br>"
+        );
+
+        // IMAGE
+        response.getWriter().println(
+            "<input type='file' name='image' " +
+            "accept='image/*' required><br>"
         );
 
         response.getWriter().println(
@@ -204,6 +219,7 @@ public class SellerProductServlet extends HttpServlet {
         response.getWriter().println(
             "<tr>" +
             "<th>ID</th>" +
+            "<th>Image</th>" +
             "<th>Name</th>" +
             "<th>Description</th>" +
             "<th>Price</th>" +
@@ -221,50 +237,97 @@ public class SellerProductServlet extends HttpServlet {
 
                 found = true;
 
+                String imageHTML = "";
+
+                if (product.imagePath != null &&
+                    !product.imagePath.isEmpty()) {
+
+                    imageHTML =
+                        "<img class='product-image' src='" +
+                        request.getContextPath() +
+                        "/images/products/" +
+                        product.imagePath +
+                        "' alt='Product Image'>";
+                }
+
                 response.getWriter().println(
                     "<tr>" +
+
                     "<td>" + product.id + "</td>" +
+
+                    "<td>" + imageHTML + "</td>" +
+
                     "<td>" + product.name + "</td>" +
+
                     "<td>" + product.description + "</td>" +
+
                     "<td>₹" + product.price + "</td>" +
+
                     "<td>" + product.category + "</td>" +
+
                     "<td>" + product.stock + "</td>" +
 
                     "<td>" +
 
                     // EDIT
-                    "<form method='post' action='seller-product' style='display:inline;'>" +
+                    "<form method='post' action='seller-product' " +
+                    "style='display:inline;' " +
+                    "enctype='multipart/form-data'>" +
 
                     "<input type='hidden' name='action' value='edit'>" +
-                    "<input type='hidden' name='id' value='" + product.id + "'>" +
 
-                    "<input type='text' name='name' value='" + product.name + "' required>" +
-                    "<input type='text' name='description' value='" + product.description + "' required>" +
-                    "<input type='number' step='0.01' name='price' value='" + product.price + "' required>" +
+                    "<input type='hidden' name='id' value='" +
+                    product.id + "'>" +
+
+                    "<input type='text' name='name' value='" +
+                    product.name + "' required>" +
+
+                    "<input type='text' name='description' value='" +
+                    product.description + "' required>" +
+
+                    "<input type='number' step='0.01' name='price' value='" +
+                    product.price + "' required>" +
 
                     "<select name='category'>" +
-                    "<option value='Men'>Men</option>" +
-                    "<option value='Women'>Women</option>" +
-                    "<option value='Kids'>Kids</option>" +
+
+                    "<option value='Men' " +
+                    ("Men".equals(product.category) ? "selected" : "") +
+                    ">Men</option>" +
+
+                    "<option value='Women' " +
+                    ("Women".equals(product.category) ? "selected" : "") +
+                    ">Women</option>" +
+
+                    "<option value='Kids' " +
+                    ("Kids".equals(product.category) ? "selected" : "") +
+                    ">Kids</option>" +
+
                     "</select>" +
 
-                    "<input type='number' name='stock' value='" + product.stock + "' min='0' required>" +
+                    "<input type='number' name='stock' value='" +
+                    product.stock + "' min='0' required>" +
+
+                    "<input type='file' name='image' accept='image/*'>" +
 
                     "<button type='submit'>Edit</button>" +
 
                     "</form>" +
 
                     // DELETE
-                    "<form method='post' action='seller-product' style='display:inline;'>" +
+                    "<form method='post' action='seller-product' " +
+                    "style='display:inline;'>" +
 
                     "<input type='hidden' name='action' value='delete'>" +
-                    "<input type='hidden' name='id' value='" + product.id + "'>" +
+
+                    "<input type='hidden' name='id' value='" +
+                    product.id + "'>" +
 
                     "<button type='submit'>Delete</button>" +
 
                     "</form>" +
 
                     "</td>" +
+
                     "</tr>"
                 );
             }
@@ -300,7 +363,6 @@ public class SellerProductServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        // Get current session
         HttpSession session = request.getSession(false);
 
         // Check Seller Login
@@ -314,10 +376,8 @@ public class SellerProductServlet extends HttpServlet {
             return;
         }
 
-        // Seller ID
         int sellerId = 11;
 
-        // Get action
         String action = request.getParameter("action");
 
         ProductDAO productDAO = new ProductDAO();
@@ -328,7 +388,8 @@ public class SellerProductServlet extends HttpServlet {
         // =========================
         if ("add".equals(action)) {
 
-            String name = request.getParameter("name");
+            String name =
+                request.getParameter("name");
 
             String description =
                 request.getParameter("description");
@@ -346,6 +407,57 @@ public class SellerProductServlet extends HttpServlet {
                     request.getParameter("stock")
                 );
 
+
+            // =========================
+            // IMAGE UPLOAD
+            // =========================
+
+            Part imagePart =
+                request.getPart("image");
+
+            String imageFileName = null;
+
+            if (imagePart != null &&
+                imagePart.getSize() > 0) {
+
+                String originalFileName =
+                    imagePart.getSubmittedFileName();
+
+                String extension = "";
+
+                if (originalFileName != null &&
+                    originalFileName.contains(".")) {
+
+                    extension =
+                        originalFileName.substring(
+                            originalFileName.lastIndexOf(".")
+                        );
+                }
+
+                imageFileName =
+                    System.currentTimeMillis() +
+                    extension;
+
+                String uploadPath =
+                    request.getServletContext()
+                           .getRealPath("/images/products");
+
+                File uploadDirectory =
+                    new File(uploadPath);
+
+                if (!uploadDirectory.exists()) {
+                    uploadDirectory.mkdirs();
+                }
+
+                imagePart.write(
+                    new File(
+                        uploadDirectory,
+                        imageFileName
+                    ).getAbsolutePath()
+                );
+            }
+
+
             Product product = new Product(
                 0,
                 name,
@@ -353,7 +465,8 @@ public class SellerProductServlet extends HttpServlet {
                 price,
                 category,
                 stock,
-                sellerId
+                sellerId,
+                imageFileName
             );
 
             productDAO.addProduct(product);
@@ -393,6 +506,74 @@ public class SellerProductServlet extends HttpServlet {
                     request.getParameter("stock")
                 );
 
+
+            // Get existing image
+            String existingImagePath = "";
+
+            List<Product> products =
+                productDAO.getAllProducts();
+
+            for (Product p : products) {
+
+                if (p.id == id &&
+                    p.sellerId == sellerId) {
+
+                    existingImagePath =
+                        p.imagePath;
+
+                    break;
+                }
+            }
+
+
+            // New image
+            Part imagePart =
+                request.getPart("image");
+
+            String imageFileName =
+                existingImagePath;
+
+            if (imagePart != null &&
+                imagePart.getSize() > 0) {
+
+                String originalFileName =
+                    imagePart.getSubmittedFileName();
+
+                String extension = "";
+
+                if (originalFileName != null &&
+                    originalFileName.contains(".")) {
+
+                    extension =
+                        originalFileName.substring(
+                            originalFileName.lastIndexOf(".")
+                        );
+                }
+
+                imageFileName =
+                    System.currentTimeMillis() +
+                    extension;
+
+                String uploadPath =
+                    request.getServletContext()
+                           .getRealPath("/images/products");
+
+                File uploadDirectory =
+                    new File(uploadPath);
+
+                if (!uploadDirectory.exists()) {
+                    uploadDirectory.mkdirs();
+                }
+
+                imagePart.write(
+                    new File(
+                        uploadDirectory,
+                        imageFileName
+                    ).getAbsolutePath()
+                );
+            }
+
+
             Product product = new Product(
                 id,
                 name,
@@ -400,7 +581,8 @@ public class SellerProductServlet extends HttpServlet {
                 price,
                 category,
                 stock,
-                sellerId
+                sellerId,
+                imageFileName
             );
 
             productDAO.updateProduct(product);
@@ -421,7 +603,10 @@ public class SellerProductServlet extends HttpServlet {
                     request.getParameter("id")
                 );
 
-            productDAO.deleteProduct(id, sellerId);
+            productDAO.deleteProduct(
+                id,
+                sellerId
+            );
 
             response.getWriter().println(
                 "<h2>Product Deleted Successfully!</h2>"
@@ -440,7 +625,9 @@ public class SellerProductServlet extends HttpServlet {
         }
 
         response.getWriter().println(
-            "<p><a href='seller-product'>Back to Manage Products</a></p>"
+            "<p><a href='seller-product'>" +
+            "Back to Manage Products" +
+            "</a></p>"
         );
     }
 }

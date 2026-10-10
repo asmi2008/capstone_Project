@@ -7,12 +7,14 @@ import java.util.List;
 
 public class ProductDAO {
 
+    // =========================
     // ADD PRODUCT
+    // =========================
     public void addProduct(Product product) {
 
         String sql = "INSERT INTO Products " +
-                     "(Name, Description, Price, Category, Stock, SellerId) " +
-                     "VALUES (?, ?, ?, ?, ?, ?)";
+                     "(Name, Description, Price, Category, Stock, SellerId, ImagePath) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -23,6 +25,7 @@ public class ProductDAO {
             ps.setString(4, product.category);
             ps.setInt(5, product.stock);
             ps.setInt(6, product.sellerId);
+            ps.setString(7, product.imagePath);
 
             ps.executeUpdate();
 
@@ -34,11 +37,15 @@ public class ProductDAO {
         }
     }
 
+
+    // =========================
     // UPDATE PRODUCT
+    // =========================
     public void updateProduct(Product product) {
 
-        String sql = "UPDATE Products SET Name = ?, Description = ?, " +
-                     "Price = ?, Category = ?, Stock = ? " +
+        String sql = "UPDATE Products SET " +
+                     "Name = ?, Description = ?, Price = ?, " +
+                     "Category = ?, Stock = ?, ImagePath = ? " +
                      "WHERE Id = ? AND SellerId = ?";
 
         try (Connection con = DatabaseConnection.getConnection();
@@ -49,8 +56,9 @@ public class ProductDAO {
             ps.setDouble(3, product.price);
             ps.setString(4, product.category);
             ps.setInt(5, product.stock);
-            ps.setInt(6, product.id);
-            ps.setInt(7, product.sellerId);
+            ps.setString(6, product.imagePath);
+            ps.setInt(7, product.id);
+            ps.setInt(8, product.sellerId);
 
             ps.executeUpdate();
 
@@ -62,7 +70,10 @@ public class ProductDAO {
         }
     }
 
+
+    // =========================
     // DELETE PRODUCT BY SELLER
+    // =========================
     public void deleteProduct(int id, int sellerId) {
 
         String sql = "DELETE FROM Products " +
@@ -84,7 +95,10 @@ public class ProductDAO {
         }
     }
 
+
+    // =========================
     // DELETE PRODUCT BY ADMIN
+    // =========================
     public void deleteProductByAdmin(int id) {
 
         String sql = "DELETE FROM Products WHERE Id = ?";
@@ -96,15 +110,18 @@ public class ProductDAO {
 
             ps.executeUpdate();
 
-            System.out.println("Product removed by Admin!");
+            System.out.println("Product deleted by admin!");
 
         } catch (SQLException e) {
-            System.out.println("Failed to remove product by Admin!");
+            System.out.println("Failed to delete product!");
             e.printStackTrace();
         }
     }
 
+
+    // =========================
     // VIEW ALL PRODUCTS
+    // =========================
     public List<Product> getAllProducts() {
 
         List<Product> products = new ArrayList<>();
@@ -124,21 +141,25 @@ public class ProductDAO {
                     rs.getDouble("Price"),
                     rs.getString("Category"),
                     rs.getInt("Stock"),
-                    rs.getInt("SellerId")
+                    rs.getInt("SellerId"),
+                    rs.getString("ImagePath")
                 );
 
                 products.add(product);
             }
 
         } catch (SQLException e) {
-            System.out.println("Failed to get products!");
+            System.out.println("Failed to fetch products!");
             e.printStackTrace();
         }
 
         return products;
     }
 
+
+    // =========================
     // SEARCH PRODUCT BY NAME
+    // =========================
     public List<Product> searchProducts(String keyword) {
 
         List<Product> products = new ArrayList<>();
@@ -150,32 +171,37 @@ public class ProductDAO {
 
             ps.setString(1, "%" + keyword + "%");
 
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
+                while (rs.next()) {
 
-                Product product = new Product(
-                    rs.getInt("Id"),
-                    rs.getString("Name"),
-                    rs.getString("Description"),
-                    rs.getDouble("Price"),
-                    rs.getString("Category"),
-                    rs.getInt("Stock"),
-                    rs.getInt("SellerId")
-                );
+                    Product product = new Product(
+                        rs.getInt("Id"),
+                        rs.getString("Name"),
+                        rs.getString("Description"),
+                        rs.getDouble("Price"),
+                        rs.getString("Category"),
+                        rs.getInt("Stock"),
+                        rs.getInt("SellerId"),
+                        rs.getString("ImagePath")
+                    );
 
-                products.add(product);
+                    products.add(product);
+                }
             }
 
         } catch (SQLException e) {
-            System.out.println("Search failed!");
+            System.out.println("Failed to search products!");
             e.printStackTrace();
         }
 
         return products;
     }
 
+
+    // =========================
     // FILTER PRODUCTS BY CATEGORY
+    // =========================
     public List<Product> filterByCategory(String category) {
 
         List<Product> products = new ArrayList<>();
@@ -187,25 +213,27 @@ public class ProductDAO {
 
             ps.setString(1, category);
 
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
 
-            while (rs.next()) {
+                while (rs.next()) {
 
-                Product product = new Product(
-                    rs.getInt("Id"),
-                    rs.getString("Name"),
-                    rs.getString("Description"),
-                    rs.getDouble("Price"),
-                    rs.getString("Category"),
-                    rs.getInt("Stock"),
-                    rs.getInt("SellerId")
-                );
+                    Product product = new Product(
+                        rs.getInt("Id"),
+                        rs.getString("Name"),
+                        rs.getString("Description"),
+                        rs.getDouble("Price"),
+                        rs.getString("Category"),
+                        rs.getInt("Stock"),
+                        rs.getInt("SellerId"),
+                        rs.getString("ImagePath")
+                    );
 
-                products.add(product);
+                    products.add(product);
+                }
             }
 
         } catch (SQLException e) {
-            System.out.println("Category filter failed!");
+            System.out.println("Failed to filter products!");
             e.printStackTrace();
         }
 

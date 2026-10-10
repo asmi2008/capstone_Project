@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartDAO {
-
     // ADD PRODUCT TO CART
     public void addToCart(int userId, int productId, int quantity) {
 
@@ -18,7 +17,6 @@ public class CartDAO {
             ps.setInt(1, userId);
             ps.setInt(2, productId);
             ps.setInt(3, quantity);
-
             ps.executeUpdate();
 
             System.out.println("Product added to cart successfully!");

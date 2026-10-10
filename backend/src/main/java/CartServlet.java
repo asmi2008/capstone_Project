@@ -384,10 +384,23 @@ public class CartServlet extends HttpServlet {
             <div class="logo">Asmi<span>Mart</span></div>
 
             <nav class="nav">
-                <a href="http://127.0.0.1:5500/frontend/home.html">Home</a>
-                <a href="http://127.0.0.1:5500/frontend/products.html">Shop</a>
-                <a href="http://localhost:8080/fashionstore-backend/cart">Cart</a>
-                <a href="http://127.0.0.1:5500/frontend/index.html">Login</a>
+
+                <a href="http://localhost:8080/fashionstore-backend/home.html">
+                    Home
+                </a>
+
+                <a href="http://localhost:8080/fashionstore-backend/products.html">
+                    Shop
+                </a>
+
+                <a href="http://localhost:8080/fashionstore-backend/cart">
+                    Cart
+                </a>
+
+                <a href="http://localhost:8080/fashionstore-backend/index.html">
+                    Login
+                </a>
+
             </nav>
         </header>
 
@@ -407,8 +420,9 @@ public class CartServlet extends HttpServlet {
                     <div class="empty-icon">🛒</div>
                     <h2>Your cart is empty</h2>
                     <p>Looks like you haven't added anything to your cart yet.</p>
+
                     <a class="btn primary"
-                       href="http://127.0.0.1:5500/frontend/products.html">
+                       href="http://localhost:8080/fashionstore-backend/products.html">
                        Continue Shopping
                     </a>
                 </div>
@@ -509,12 +523,13 @@ public class CartServlet extends HttpServlet {
                         "</span>" +
                     "</div>" +
 
-                    "<a class='checkout' href='checkout'>" +
+                    "<a class='checkout' " +
+                    "href='http://localhost:8080/fashionstore-backend/checkout'>" +
                         "Proceed to Checkout →" +
                     "</a>" +
 
                     "<a class='continue' " +
-                    "href='http://127.0.0.1:5500/frontend/products.html'>" +
+                    "href='http://localhost:8080/fashionstore-backend/products.html'>" +
                         "← Continue Shopping" +
                     "</a>" +
 

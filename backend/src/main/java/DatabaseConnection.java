@@ -1,61 +1,59 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DatabaseConnection {
 
     public static Connection getConnection() {
 
-        String url = "jdbc:sqlserver://localhost:1433;"
-                   + "databaseName=FashionStoreDB;"
-                   + "trustServerCertificate=true";
-
-        String username = "fashionuser";
-        String password = "asmi@2008";
+        String url = System.getenv("DATABASE_URL");
+        String username = System.getenv("DB_USERNAME");
+        String password = System.getenv("DB_PASSWORD");
 
         try {
+            if (url == null || username == null || password == null) {
+                throw new SQLException(
+                    "Database environment variables are missing!"
+                );
+            }
 
-            // Load SQL Server JDBC Driver
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            // Convert Render URL to JDBC URL
+            if (url.startsWith("postgresql://")) {
+                url = url.replaceFirst(
+                    "^postgresql://", "jdbc:postgresql://"
+                );
+            }
 
-            // Connect to SQL Server
+            // Enable SSL for Render PostgreSQL
+            if (!url.contains("sslmode=")) {
+                url += url.contains("?") ? "&sslmode=require"
+                                         : "?sslmode=require";
+            }
+
+            Class.forName("org.postgresql.Driver");
+
             Connection con = DriverManager.getConnection(
-                    url,
-                    username,
-                    password
+                url, username, password
             );
 
-            System.out.println("Database Connected Successfully!");
-
+            System.out.println("PostgreSQL Connected Successfully!");
             return con;
 
         } catch (Exception e) {
-
             System.out.println("Database Connection Failed!");
-
             e.printStackTrace();
-
             return null;
         }
     }
 
-    // Database connection test
     public static void main(String[] args) {
-
-        Connection con = getConnection();
-
-        if (con != null) {
-
-            System.out.println("Connection Test Successful!");
-
-            try {
-                con.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+        try (Connection con = getConnection()) {
+            if (con != null) {
+                System.out.println("Connection Test Successful!");
             }
-
-        } else {
-
+        } catch (SQLException e) {
             System.out.println("Connection Test Failed!");
+            e.printStackTrace();
         }
     }
 }
