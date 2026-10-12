@@ -5,55 +5,36 @@ import java.sql.SQLException;
 public class DatabaseConnection {
 
     public static Connection getConnection() {
-
-        String url = System.getenv("DATABASE_URL");
+        String host = System.getenv("DB_HOST");
+        String port = System.getenv("DB_PORT");
+        String dbName = System.getenv("DB_NAME");
         String username = System.getenv("DB_USERNAME");
         String password = System.getenv("DB_PASSWORD");
 
-        try {
-            if (url == null || username == null || password == null) {
-                throw new SQLException(
-                    "Database environment variables are missing!"
-                );
-            }
-
-            // Convert Render URL to JDBC URL
-            if (url.startsWith("postgresql://")) {
-                url = url.replaceFirst(
-                    "^postgresql://", "jdbc:postgresql://"
-                );
-            }
-
-            // Enable SSL for Render PostgreSQL
-            if (!url.contains("sslmode=")) {
-                url += url.contains("?") ? "&sslmode=require"
-                                         : "?sslmode=require";
-            }
-
-            Class.forName("org.postgresql.Driver");
-
-            Connection con = DriverManager.getConnection(
-                url, username, password
-            );
-
-            System.out.println("PostgreSQL Connected Successfully!");
-            return con;
-
-        } catch (Exception e) {
-            System.out.println("Database Connection Failed!");
-            e.printStackTrace();
+        if (host == null || port == null || dbName == null
+                || username == null || password == null) {
+            System.out.println("Database environment variables are missing!");
             return null;
         }
-    }
 
-    public static void main(String[] args) {
-        try (Connection con = getConnection()) {
-            if (con != null) {
-                System.out.println("Connection Test Successful!");
-            }
-        } catch (SQLException e) {
-            System.out.println("Connection Test Failed!");
+        String url = "jdbc:sqlserver://" + host + ":" + port
+                + ";databaseName=" + dbName
+                + ";encrypt=true;trustServerCertificate=true"
+                + ";loginTimeout=15";
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            Connection con = DriverManager.getConnection(
+                    url, username, password);
+
+            System.out.println("SQL Server Connected Successfully!");
+            return con;
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("SQL Server Connection Failed!");
             e.printStackTrace();
+            return null;
         }
     }
 }
